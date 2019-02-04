@@ -1,0 +1,79 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Etch-a-Sketch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    
+</head>
+<body>
+    <div class="container"></div>
+    
+    
+    <script>
+        const body = document.querySelector('body')
+        
+
+        const container= document.querySelector('.container');
+
+        container.setAttribute("style", "display:grid; grid-gap: 15px; grid-template-columns:repeat(5, 1fr); grid-template-rows: 100px 350px 100px; grid-template-areas: 'h h h h h' 'm g g g n' 'f f f f f';");
+
+        const grid = document.createElement("div");
+        grid.className= "grid";
+        container.appendChild(grid);
+        grid.setAttribute("style", "grid-area: g; border: 5px solid red; display: grid; grid-template-columns: repeat(16,1fr); grid-template-rows: repeat(16, 1fr); grid-gap:2px;")
+        
+        let griid = document.querySelector(".grid");
+        
+        let createDiv = function (num) {
+            for (let i = 0; i<num; i++) {
+                let div = document.createElement("div");
+                div.className = "a" ;
+                div.setAttribute("style", "border: 2px solid black;")
+                griid.appendChild(div);
+            }
+        }
+        let colorDiv = function (){ 
+            let a = document.querySelectorAll('.a');
+            for ( let i =0; i<a.length; i++){
+                a[i].addEventListener('mouseover', () =>{
+                    a[i].setAttribute('style', 'border: 2px solid black; background:green;')})
+            }
+        }
+
+        let erase = document.createElement("BUTTON");
+        erase.className = "erase";
+        erase.textContent = "Erase";
+        container.appendChild(erase);
+
+         erase.addEventListener('click', ()=> {
+            let a = document.querySelectorAll('.a');
+            for ( let i =0; i<a.length; i++){
+                a[i].addEventListener('mouseover', () =>{
+                    a[i].setAttribute('style', 'border: 2px solid black; background:white;')})
+            }
+         })
+
+        let reset = document.createElement("BUTTON");
+        reset.textContent = "reset";
+        container.appendChild(reset);
+        
+        
+        reset.addEventListener('click', ()=> {
+            let a = document.querySelectorAll('.a');
+            for ( let i =0; i<a.length; i++){
+                    a[i].setAttribute('style', 'border: 2px solid black; background:white;')
+            }
+            colorDiv();
+        })
+
+        let inputZone = document.createElement("input");
+        container.appendChild(inputZone);	     
+        console.log(inputZone);
+        createDiv(256);
+        colorDiv();
+    </script>
+</body>
+</html>
