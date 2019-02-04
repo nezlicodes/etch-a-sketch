@@ -14,16 +14,20 @@
     
     <script>
         const body = document.querySelector('body')
-        
+        body.setAttribute("style", "background: rgb(350,200,200);")
+        let title = document.createElement("h1");
+        title.textContent = "Etch-a-sketch";
+        body.insertBefore(title, body.childNodes[0]);
+        title.setAttribute('style', 'font-family: monospace, display: flex; justify-content:center; align-content: center;')
 
         const container= document.querySelector('.container');
 
-        container.setAttribute("style", "display:grid; grid-gap: 15px; grid-template-columns:repeat(5, 1fr); grid-template-rows: 100px 350px 100px; grid-template-areas: 'h h h h h' 'm g g g n' 'f f f f f';");
+        container.setAttribute("style", "height: 100%;display:grid; grid-gap: 15px; grid-template-columns:repeat(5, 1fr); grid-template-areas: 'h h h h h' 'm g g g n' 'm g g g n' 'm g g g n' 'f f f f f';");
 
         const grid = document.createElement("div");
         grid.className= "grid";
         container.appendChild(grid);
-        grid.setAttribute("style", "grid-area: g; border: 5px solid red; display: grid; grid-template-columns: repeat(16,1fr); grid-template-rows: repeat(16, 1fr); grid-gap:2px;")
+        grid.setAttribute("style", "grid-area: g; border: 5px solid white; display: grid; grid-template-columns: repeat(16,1fr); grid-template-rows: repeat(16, 1fr); grid-gap:2px;")
         
         let griid = document.querySelector(".grid");
         
@@ -35,26 +39,49 @@
                 griid.appendChild(div);
             }
         }
+        createDiv(256);
         let colorDiv = function (){ 
             let a = document.querySelectorAll('.a');
             for ( let i =0; i<a.length; i++){
+                
                 a[i].addEventListener('mouseover', () =>{
-                    a[i].setAttribute('style', 'border: 2px solid black; background:green;')})
+                    a[i].classList.add = "red";
+                    a[i].setAttribute('style', 'border: 2px solid black; background:rgb(300,120,180);');
+                    
+                    })
+                
             }
         }
+
+        let newColor = function (){ 
+            let red = document.querySelectorAll('.red');
+            for ( let i =0; i<red.length; i++){
+                
+                red[i].addEventListener('mouseover', () =>{
+
+                    a[i].setAttribute('style', 'border: 2px solid black; background:rgb(340,160,220);');
+                    })
+                
+            }
+        }
+        
 
         let erase = document.createElement("BUTTON");
         erase.className = "erase";
         erase.textContent = "Erase";
         container.appendChild(erase);
 
-         erase.addEventListener('click', ()=> {
+        erase.addEventListener('click', ()=> {
             let a = document.querySelectorAll('.a');
             for ( let i =0; i<a.length; i++){
+                
                 a[i].addEventListener('mouseover', () =>{
-                    a[i].setAttribute('style', 'border: 2px solid black; background:white;')})
+                    a[i].setAttribute('style', 'border: 2px solid black; background:rgb(350,200,200);')})
             }
-         })
+
+        })
+
+          
 
         let reset = document.createElement("BUTTON");
         reset.textContent = "reset";
@@ -64,16 +91,21 @@
         reset.addEventListener('click', ()=> {
             let a = document.querySelectorAll('.a');
             for ( let i =0; i<a.length; i++){
-                    a[i].setAttribute('style', 'border: 2px solid black; background:white;')
+                    a[i].setAttribute('style', 'border: 2px solid black; background:rgb(350,200,200);')
             }
             colorDiv();
+            
         })
 
-        let inputZone = document.createElement("input");
-        container.appendChild(inputZone);	     
-        console.log(inputZone);
-        createDiv(256);
+        
+       
+       let buttons = document.querySelectorAll('button');
+       for (let i =0; i<buttons.length; i++){
+        buttons[i].setAttribute("style", " align-self: center; justify-self: center;");
+        }
         colorDiv();
+        newColor();
+        
     </script>
 </body>
 </html>
